@@ -1,3 +1,6 @@
+import os
+import swiftclient
+
 
 # This function will list the local files in your directory
 dwdef showLocal():
