@@ -23,3 +23,16 @@ def listFiles():
 def CreateFolder():
 		folder=input ('Enter name of folder: ')
 		conn.put_container(folder)
+
+# Allow a user to list the contents of any of the remote folders that he wants 
+# This will list all the available buckets and you have to name which bucket you want your files to be listed .
+def listSomeFiles():
+	print ('All the folders are listed here:')
+	for folder in conn.get_account()[1]:
+		print ("folder Name: ", folder['name'])
+	folder = input ('Enter name of folder for which you want to list all the files: ')
+	for cont in conn.get_account ()[1]:
+		if cont['name'] == folder:
+			for data in conn.get_container (cont['name'])[1]:
+				print (
+					'Data: {0}\t size of data: {1}\t date in bytes: {2}'.format (data['name'], data['bytes'], data['last_modified']))
