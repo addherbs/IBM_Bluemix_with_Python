@@ -35,3 +35,24 @@ def restrictedUpload():
 				print ('Element Added')
 			else:
 				print ('you cant add more elements')
+				
+				
+# These will only upload files that are less than 500KB
+def limitUpload():
+    root = tk.Tk()
+    #myfiletypes = [('Python files', '*.py'), ('All files', '*')]
+    open = tkf.askopenfile(parent=root,mode='rb',title='Choose a file')
+    abs_path = os.path.abspath(open.name)
+    fName =  os.path.basename(abs_path)
+    statinfo = os.stat(fName)
+    sz = statinfo.st_size
+    fContent=open.read()
+    print ('size of the file:', end=' ')
+    if sz/1024 < 1024 :
+        conn.put_object(container,fName,fContent,'text/plain')
+        print ('File ' + fName + ' uploaded to container ' + container + ' successfully.')
+    else:
+        print ('File Size exceeded.')
+        fContent=open.read()
+				
+
