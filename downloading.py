@@ -1,3 +1,4 @@
+# Use the dependencies from connection.py and listing.py
 # Using this function we can download the file in the current directory
 def downloadFile():
     listFiles()
