@@ -20,8 +20,8 @@ def restrictedUpload():
 	open = tkf.askopenfile(parent=root,mode='rb',title='Choose a file')
 	max_container_bytes = float(input ('The maximum Kilobytes of a container: '))
 	abs_path = os.path.abspath(open.name)
-	fName = os.path.basename(abs_path)
-	fContent=open.read()
+	fileName = os.path.basename(abs_path)
+	fileContent=open.read()
 	for container in conn.get_account()[1]:
 		print ('Container Size: ', container['bytes'], " bytes.", "in container: ", container['name'])
 	container = input ('Enter name of container in which you want to add the file to: ')
@@ -31,7 +31,7 @@ def restrictedUpload():
 			container_bytes = float(float(cont['bytes'])/1024)
 			print (container_bytes,max_container_bytes, )
 			if max_container_bytes - container_bytes > 0:
-				conn.put_object (container, fName, fContent, 'text/plain')
+				conn.put_object (container, fileName, fileContent, 'text/plain')
 				print ('Element Added')
 			else:
 				print ('you cant add more elements')
@@ -40,19 +40,17 @@ def restrictedUpload():
 # These will only upload files that are less than 500KB
 def limitUpload():
     root = tk.Tk()
-    #myfiletypes = [('Python files', '*.py'), ('All files', '*')]
-    open = tkf.askopenfile(parent=root,mode='rb',title='Choose a file')
+    open = tkf.askopenfile(parent=root,mode='rb',title='Choose file')
     abs_path = os.path.abspath(open.name)
-    fName =  os.path.basename(abs_path)
-    statinfo = os.stat(fName)
-    sz = statinfo.st_size
-    fContent=open.read()
-    print ('size of the file:', end=' ')
-    if sz/1024 < 1024 :
-        conn.put_object(container,fName,fContent,'text/plain')
-        print ('File ' + fName + ' uploaded to container ' + container + ' successfully.')
+    fileName =  os.path.basename(abs_path)
+    statinfo = os.stat(fileName)
+    fileSize = statinfo.st_size
+    fileContent=open.read()
+    print ('File Size:', end=' ')
+    if fileSize/1024 < 500 :
+        conn.put_object(container,fileName,fileContent,'text/plain')
+        print ('File ' + fileName + ' uploaded to container ' + container + ' successfully.')
     else:
         print ('File Size exceeded.')
-        fContent=open.read()
-				
+        fileContent=open.read()
 
