@@ -4,6 +4,5 @@ def deleteFile():
     fileName=input ('Enter file name to delete: ')
     try:
         conn.delete_object(containerName,fileName)
-        print (fname + ' deleted successfully.')
     except:
         print ('File Does not Exist.')
