@@ -3,7 +3,7 @@ import swiftclient
 
 
 # This function will list the local files in your directory
-dwdef showLocal():
+def showLocal():
         files = [f for f in os.listdir('.') if os.path.isfile(f)]
         for f in files:
             print (f)
