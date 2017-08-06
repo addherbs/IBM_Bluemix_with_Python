@@ -1,7 +1,7 @@
 # Use the dependencies from connection.py and listing.py
 # Using this function we can download the file in the current directory
 def downloadFile():
-    listFiles()
+    listFiles()			#calls the listfiles()
     containerName=input ('Enter name of container: ')
     fileName=input ('Enter file name to download: ')
     try:
@@ -13,6 +13,7 @@ def downloadFile():
         print('File Does not Exist.')
 		
 		
+# List all the files in a container
 def listFiles():
 		for cont in conn.get_account()[1]:
 		print ('Total File Size: ', cont['bytes'], " bytes.", "in cont: ", cont['name'])
