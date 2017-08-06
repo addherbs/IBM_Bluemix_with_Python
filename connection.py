@@ -11,7 +11,9 @@ username= "username",
 password= "password"
 
 
-# Make sure Connection object is global
+# Makes sure Connection object is global
+#Initializes the connection
+#Call this everytime if the conn is not global
 def get_connection():
     conn = swiftclient.Connection(
         key=password,
