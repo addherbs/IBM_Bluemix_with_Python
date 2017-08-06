@@ -13,8 +13,9 @@ def uploadAnyFile():
 	fileContent=open.read()
 	conn.put_object(container,fileName,fileContent,'text/plain')
 	
-#	In this function you will only be able to upload files if and only if the specified container has enough logically memory capacity!
-# 	A file wont be uploaded if the container has enough memory
+
+#	In this function you will only be able to upload files if and only if the specified container has enough logically memory capacity in it!
+# 	A file wont be uploaded if the container has more than specified memory
 def restrictedUpload():
 	root = tk.Tk()
 	open = tkf.askopenfile(parent=root,mode='rb',title='Choose a file')
