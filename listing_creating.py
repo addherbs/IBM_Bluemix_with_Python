@@ -13,8 +13,9 @@ def showLocal():
 # List details of the containers
 # List Files in the containers with their details as well		
 def listFiles():
+		#Reads all the containers
 		for cont in conn.get_account()[1]:
-		print ('Total File Size: ', cont['bytes'], " bytes.", "in cont: ", cont['name'])
+		print ('Total File Size: ', cont['bytes'], " bytes.", "in cont: ", cont['name'])	#Displays data information of a container
 		for dataObj in conn.get_container(cont['name'])[1]:
 			print ('object: {0}\t size: {1}\t date: {2}'.format (dataObj['name'], dataObj['bytes'], dataObj['last_modified']))
 	
